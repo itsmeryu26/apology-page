@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I'm Sorry</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #C9A0DC;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      max-width: 500px;
+    }
+    h1 {
+      color: #d81b60;
+    }
+    p {
+      font-size: 18px;
+      color: #333;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .btn-group {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .yes {
+      background-color: #66bb6a;
+      color: white;
+      font-size: 18px;
+    }
+    .yes:hover {
+      background-color: #43a047;
+      transform: scale(1.1);
+    }
+    .no {
+      background-color: #ef5350;
+      color: white;
+    }
+    .no:hover {
+      background-color: #c62828;
+    }
+    .no:disabled {
+      pointer-events: none;
+      opacity: 0.3;
+    }
+    .thank-you-message {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #66bb6a;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <img src="https://media.giphy.com/media/SVkhYVCi8fKPKvypi6/giphy.gif" alt="I'm sorry GIF">
+    <h1>Sorryy naa :(( </h1>
+    <p id="message">
+      I'm sorry atee I know na mali na nagsabi ako ng last minute and I understand your frustration. I hope you'll let me make it up to you :(())
+    </p>
+    <div class="btn-group">
+      <button class="yes" id="forgiveButton" onclick="forgive()">I forgive you</button>
+      <button class="no" id="noButton" onclick="notYet()">Nope, not yet</button>
+    </div>
+  </div>
+
+  <script>
+    let noButton = document.getElementById("noButton");
+    let forgiveButton = document.getElementById("forgiveButton");
+    let noClicks = 0;
+
+    function forgive() {
+      document.getElementById("message").innerHTML = "YAYYY THANK YOU SO MUCH ATEEE BAWII AKO SAYO PROMISE";
+      document.querySelector("img").src = "https://media.giphy.com/media/VM1fcpu2bKs1e2Kdbj/giphy.gif";
+      let thankYouMessage = document.createElement("div");
+      thankYouMessage.className = "thank-you-message";
+      thankYouMessage.innerHTML = "I LOVEEE YOUU ATEE ❤";
+      document.querySelector(".card").appendChild(thankYouMessage);
+    }
+
+    function notYet() {
+      noClicks++;
+      document.getElementById("message").innerHTML = "I understand. I’ll keep trying to make things right.";
+      document.querySelector("img").src = "https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif";
+
+      noButton.style.transform = `scale(${1 - noClicks * 0.1})`;
+      if (noClicks >= 5) {
+        noButton.disabled = true;
+      }
+
+      forgiveButton.style.transform = `scale(${1 + noClicks * 0.1})`;
+    }
+  </script>
+</body>
+</html>
